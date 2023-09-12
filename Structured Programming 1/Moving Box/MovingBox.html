@@ -1,0 +1,163 @@
+<html>
+<style>
+    #myCanvas {
+
+        height: 100px;
+        width: 100px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+</style>
+
+<head>
+
+    <title>Moving Box</title>
+    <script>
+
+        // global variables
+        var moveSpeed = 10
+        // drawing
+        var canvas
+        var ctx
+        var id
+        var fps = 60
+        // red box
+        var redX = 200
+        var redY = 100
+        var redWidth = 100
+        var redHeight = 100
+        var direction
+        //mouse
+        var mouseX
+        var mouseY
+        var pmouseX = 0
+        var pmouseY = 0
+        //keybaord
+        var keysDown = {};
+
+        function loaded() {
+            //code goes here
+            canvas = document.getElementById("myCanvas")
+            ctx = canvas.getContext("2d")
+
+            // change canvas size
+            canvas.width = 500
+            canvas.height = 500
+
+            canvas.addEventListener("mousemove", followMouse, false);
+            canvas.addEventListener("mousedown", getPosition, false);
+            window.addEventListener('keydown', function (e) {
+                keysDown[e.keyCode] = true;
+            });
+            window.addEventListener('keyup', function (e) {
+                delete keysDown[e.keyCode];
+            });
+            
+            id = setInterval(update, 1000 / fps)
+        }//end of loaded
+
+        function update() {
+
+
+            /*
+                Runs 'fps' times per second
+                Runs render
+                this is where variables change
+                user triggered
+            */
+
+            //redX = mouseX-redWidth/2
+            //redY = mouseY-redHeight/2
+
+            redX = redX + moveSpeed
+            redY = redY + moveSpeed
+
+            if (redY + redHeight > canvas.height) {
+                redY = redY - moveSpeed
+            }
+
+            if (redX + redWidth > canvas.width) {
+                redX = redX - moveSpeed
+            }
+
+            
+
+
+
+
+
+
+
+
+            render()
+
+        }// end of update
+
+
+        function render() {
+            //Draws to the screen
+            //Called by the 'update' function
+
+            //draw the BG
+            ctx.beginPath()
+            ctx.rect(0, 0, canvas.width, canvas.height); // parameters are x,y,width,height
+            ctx.closePath()
+            ctx.fillStyle = "white";
+            ctx.fill();
+
+
+            // draw a red rectangle
+            ctx.beginPath()
+            ctx.rect(redX, redY, redWidth, redHeight); // parameters are x,y,width,height
+            ctx.closePath()
+            ctx.fillStyle = "red";
+            ctx.fill();
+
+        }// end of render
+
+        function getPosition(event) {// start of getPosition
+            /*
+                changes the x & y positon for the box to be where you click
+                INPUTS
+                    event - click event object
+                OUTPUTS
+                    none
+            */
+            // assumes canvas is a global variable
+            var clickX = event.x;
+            var clickY = event.y;
+            // adjust x and y to be relative to the canvas	
+            clickX -= canvas.offsetLeft;
+            clickY -= canvas.offsetTop;
+            // adjust for any scrolling
+            clickX += window.pageXOffset
+            clickY += window.pageYOffset;
+            // cyour code here
+
+
+
+
+
+        }// end of GetPosition
+
+
+        function followMouse(e) {
+            pmouseX = mouseX
+            pmouseY = mouseY
+            mouseX = event.x;
+            mouseY = event.y;
+
+            //var canvas = document.getElementById("canvas");
+
+            mouseX -= canvas.offsetLeft;
+            mouseY -= canvas.offsetTop;
+        }
+    </script>
+</head>
+
+
+
+<body onLoad="loaded()">
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+</body>
+
+</html>
