@@ -5,14 +5,13 @@
         border: 25px solid rgb(0, 0, 0);
     }
 
-   
-
     h1 {
         text-align: center;
         color: rgb(74, 10, 250);
+        font-family: Comic Sans MS;
     }
 
-    h6 {
+    h4 {
         text-align: center;
     }
 
@@ -23,40 +22,64 @@
 <h1>
     Epic Shapes
 </h1>
-<h6>
-    CLICK FOR MUSIC!
-</h6>
-<audio id="audio" autoplay loop src="music/Carefree.mp3"></audio>
+<h4>
+    ('<' Slower) ('>' Faster) <br>
+    ('Left Click' Bigger) ('Right Click' Smaller) <br>
+
+</h4>
+<div style="text-align: center; ">
+    <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>
+                Clicks
+                <p id="Clicks"></p>
+            </td>
+            <td>
+                Speed
+                <p id="Speed"></p>
+            </td>
+            <td>
+                Size
+                <p id="Size"></p>
+            </td>
+        </tr>
+    </table>
+
+
+
+</div>
+
 
 <head>
 
     <title>Moving Box</title>
     <script>
 
-        // global variables
+        // Global Variables
         var moveSpeed = 1 //pixels per frame
-        var fps = 120
-        // drawing
+        var physicsFps = 120
+        var clickCount = 0
+        // Drawing
         var canvas
         var ctx
         var id
-        // red box
-        var redX = 200
-        var redY = 100
+        // Red Box
+        var redX = 0
+        var redY = 0
         var redWidth = 100
         var redHeight = 100
-        // red box
-        var blueX = 200
-        var blueY = 100
+        // Bouncing Box
+        var blueX = 400
+        var blueY = 200
         var blueWidth = 100
         var blueHeight = 100
+        var blueXdir = 1
+        var blueYdir = 1
         //Circle Position
         var greenX
         var greenY
         //Circle Dimensions
         var greenRadius = 50;
-        var greenStartAngle = 0;
-        var greenEndAngle = 2;
         //mouse
         var mouseX
         var mouseY
@@ -72,32 +95,61 @@
 
             // change canvas size
             canvas.width = 500
-            canvas.height = 510
+            canvas.height = 500
 
             canvas.addEventListener("mousemove", followMouse, false);
+            canvas.addEventListener('contextmenu', event => event.preventDefault());
 
-
-            id = setInterval(update, 1000 / fps)
+            //set update speed
+            id = setInterval(update, 1000 / physicsFps)
         }//end of loaded
 
 
         function update() {
             /*
-                Runs 'fps' times per second
+                Runs 'physicsFps' times per second
                 Runs render
                 this is where variables change
                 user triggered
             */
-            let myAudio = document.querySelector('#audio')
-            myAudio.play()
+           
+            document.getElementById('Clicks').innerHTML = clickCount;
+            document.getElementById('Speed').innerHTML = moveSpeed;
+            document.getElementById('Size').innerHTML = greenRadius;
             document.onkeydown = checkKey;
-            rainbow()
+            canvas.onclick = function (IncrementClickCount) {
+                clickCount = clickCount + 1
+                greenRadius = greenRadius + 1
+            }
+            canvas.oncontextmenu = function (IncrementRightClickCount) {
+                clickCount = clickCount + 1
+                greenRadius = greenRadius - 1
+            }
+            
 
-            greenX = mouseX - greenRadius/2
-            greenY = mouseY - greenRadius/2
+            greenX = mouseX - 25
+            greenY = mouseY - 25
+            blueX = blueX - moveSpeed*blueXdir
+            blueY = blueY - moveSpeed*blueYdir
 
-            //redX = redX + moveSpeed
-            //redY = redY + moveSpeed
+
+            if (blueY + blueHeight >= canvas.height) {
+                blueYdir = blueYdir*-1
+            }
+            if (blueX + blueWidth >= canvas.width) {
+                blueXdir = blueXdir*-1
+            }
+            if (blueY <= 0) {
+                blueYdir = blueYdir*-1
+                
+            }
+            if (blueX <= 0) {
+                blueXdir = blueXdir*-1
+            }
+
+
+
+            
 
             if (redY + redHeight >= canvas.height) {
                 redY = canvas.height - redHeight
@@ -117,18 +169,11 @@
 
 
 
-
-
-
-
-
             render()
+            preventDefault()
 
         }// end of update
-        function rainbow() {
-            
 
-        }
         function checkKey(e) {
 
             e = e || window.event;
@@ -145,6 +190,12 @@
             else if (e.keyCode == '39') {
                 redX = redX + moveSpeed//right
             }
+            else if (e.keyCode == '188') {
+                moveSpeed = moveSpeed - 1// < or ,
+            }
+            else if (e.keyCode == '190') {
+                moveSpeed = moveSpeed + 1// > or .
+            }
 
         }
 
@@ -154,11 +205,13 @@
             //Called by the 'update' function
 
             //draw the BG
+            
             ctx.beginPath()
             ctx.rect(0, 0, canvas.width, canvas.height); // parameters are x,y,width,height
             ctx.closePath()
-            ctx.fillStyle = "white";
+            ctx.fillStyle = "rgb(200,200,200)";
             ctx.fill();
+            
 
 
             // draw a red rectangle
@@ -167,43 +220,22 @@
             ctx.closePath()
             ctx.fillStyle = "red";
             ctx.fill();
+            // draw a blue rectangle
+            ctx.beginPath()
+            ctx.rect(blueX, blueY, blueWidth, blueHeight); // parameters are x,y,width,height
+            ctx.closePath()
+            ctx.fillStyle = "blue";
+            ctx.fill();
 
 
             //Draw Circle
             ctx.beginPath();
-            ctx.arc(greenX, greenY, greenRadius, greenStartAngle, greenEndAngle * Math.PI); // parameters are x,y,radius,starting angle in radians, ending angle in radians, 
+            ctx.arc(greenX, greenY, greenRadius, 0, 2 * Math.PI); // parameters are x,y,radius,starting angle, and ending angle 
             ctx.closePath();
             ctx.fillStyle = "green"
             ctx.fill();
 
         }// end of render
-
-
-        function getPosition(event) {// start of getPosition
-            /*
-                changes the x & y positon for the box to be where you click
-                INPUTS
-                    event - click event object
-                OUTPUTS
-                    none
-            */
-            // assumes canvas is a global variable
-            var clickX = event.x;
-            var clickY = event.y;
-            // adjust x and y to be relative to the canvas	
-            clickX -= canvas.offsetLeft;
-            clickY -= canvas.offsetTop;
-            // adjust for any scrolling
-            clickX += window.pageXOffset
-            clickY += window.pageYOffset;
-
-
-
-
-
-        }// end of GetPosition
-
-
 
         function followMouse(e) {
             pmouseX = mouseX
