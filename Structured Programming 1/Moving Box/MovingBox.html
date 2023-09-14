@@ -5,34 +5,37 @@
     #myCanvas {
         border: 25px solid rgb(0, 0, 0);
     }
+
     /*Centers the header and changes the color and font*/
     h1 {
         text-align: center;
         color: rgb(74, 10, 250);
         font-family: Comic Sans MS;
     }
+
     /*Centers h4*/
     h4 {
         text-align: center;
     }
+
     /*Changes the BG color*/
     body {
         background-color: aqua;
     }
 </style>
-<!--Main Header--> 
+<!--Main Header-->
 <h1>
     Epic Shapes
 </h1>
-<!--Displays Instructions--> 
+<!--Displays Instructions-->
 <h4>
     ('<' Slower) ('>' Faster) <br>
-    ('Left Click' Bigger) ('Right Click' Smaller) <br>
+        ('Left Click' Bigger) ('Right Click' Smaller) <br>
 
 </h4>
 
 
-<!--adds a table with variables and aligns it to the center--> 
+<!--adds a table with variables and aligns it to the center-->
 <div style="text-align: center; ">
     <table style="margin-left: auto; margin-right: auto;">
         <tr>
@@ -94,8 +97,8 @@
             ctx = canvas.getContext("2d")
 
             // change canvas size
-            canvas.width = 500
-            canvas.height = 500
+            canvas.width = 630
+            canvas.height = 630
 
             canvas.addEventListener("mousemove", followMouse, false);
             canvas.addEventListener('contextmenu', event => event.preventDefault());
@@ -113,7 +116,7 @@
                 user triggered
             */
 
-           //Adds varables to HTML
+            //Adds varables to HTML
             document.getElementById('Clicks').innerHTML = clickCount;
             document.getElementById('Speed').innerHTML = moveSpeed;
             document.getElementById('Size').innerHTML = greenRadius;
@@ -130,28 +133,28 @@
                 clickCount = clickCount + 1
                 greenRadius = greenRadius - 1
             }
-            
+
             //Sets the green circles position to be equal to the mouse pointer
             greenX = mouseX - 25
             greenY = mouseY - 25
 
             //Moves the blue square based on it's current direction
-            blueX = blueX - moveSpeed*blueXdir
-            blueY = blueY - moveSpeed*blueYdir
+            blueX = blueX - moveSpeed * blueXdir
+            blueY = blueY - moveSpeed * blueYdir
 
             //Checks if the blue square collides with the edge of the canvas
             if (blueY + blueHeight >= canvas.height) {
-                blueYdir = blueYdir*-1
+                blueYdir = blueYdir * -1
             }
             if (blueX + blueWidth >= canvas.width) {
-                blueXdir = blueXdir*-1
+                blueXdir = blueXdir * -1
             }
             if (blueY <= 0) {
-                blueYdir = blueYdir*-1
-                
+                blueYdir = blueYdir * -1
+
             }
             if (blueX <= 0) {
-                blueXdir = blueXdir*-1
+                blueXdir = blueXdir * -1
             }
 
 
@@ -211,7 +214,7 @@
             ctx.closePath()
             ctx.fillStyle = "rgb(200,200,200)";
             ctx.fill();
-            
+
             // Draw a Red Rectangle
             ctx.beginPath()
             ctx.rect(redX, redY, redWidth, redHeight); // parameters are x,y,width,height
