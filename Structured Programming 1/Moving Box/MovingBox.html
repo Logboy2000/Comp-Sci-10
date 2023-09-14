@@ -1,12 +1,32 @@
+<!DOCTYPE html>
 <html>
 <style>
     #myCanvas {
+        border: 25px solid rgb(0, 0, 0);
+    }
 
-        height: 100px;
-        width: 100px;
-        border: 1px solid rgb(0, 0, 0);
+   
+
+    h1 {
+        text-align: center;
+        color: rgb(74, 10, 250);
+    }
+
+    h6 {
+        text-align: center;
+    }
+
+    body {
+        background-color: aqua;
     }
 </style>
+<h1>
+    Epic Shapes
+</h1>
+<h6>
+    CLICK FOR MUSIC!
+</h6>
+<audio id="audio" autoplay loop src="music/Carefree.mp3"></audio>
 
 <head>
 
@@ -14,18 +34,29 @@
     <script>
 
         // global variables
-        var moveSpeed = 10
+        var moveSpeed = 1 //pixels per frame
+        var fps = 120
         // drawing
         var canvas
         var ctx
         var id
-        var fps = 60
         // red box
         var redX = 200
         var redY = 100
         var redWidth = 100
         var redHeight = 100
-        var direction
+        // red box
+        var blueX = 200
+        var blueY = 100
+        var blueWidth = 100
+        var blueHeight = 100
+        //Circle Position
+        var greenX
+        var greenY
+        //Circle Dimensions
+        var greenRadius = 50;
+        var greenStartAngle = 0;
+        var greenEndAngle = 2;
         //mouse
         var mouseX
         var mouseY
@@ -41,45 +72,48 @@
 
             // change canvas size
             canvas.width = 500
-            canvas.height = 500
+            canvas.height = 510
 
             canvas.addEventListener("mousemove", followMouse, false);
-            canvas.addEventListener("mousedown", getPosition, false);
-            window.addEventListener('keydown', function (e) {
-                keysDown[e.keyCode] = true;
-            });
-            window.addEventListener('keyup', function (e) {
-                delete keysDown[e.keyCode];
-            });
-            
+
+
             id = setInterval(update, 1000 / fps)
         }//end of loaded
 
+
         function update() {
-
-
             /*
                 Runs 'fps' times per second
                 Runs render
                 this is where variables change
                 user triggered
             */
+            let myAudio = document.querySelector('#audio')
+            myAudio.play()
+            document.onkeydown = checkKey;
+            rainbow()
 
-            //redX = mouseX-redWidth/2
-            //redY = mouseY-redHeight/2
+            greenX = mouseX - greenRadius/2
+            greenY = mouseY - greenRadius/2
 
-            redX = redX + moveSpeed
-            redY = redY + moveSpeed
+            //redX = redX + moveSpeed
+            //redY = redY + moveSpeed
 
-            if (redY + redHeight > canvas.height) {
-                redY = redY - moveSpeed
+            if (redY + redHeight >= canvas.height) {
+                redY = canvas.height - redHeight
+            }
+            if (redX + redWidth >= canvas.width) {
+                redX = canvas.width - redWidth
+            }
+            if (redX <= 0) {
+                redX = 0
+            }
+            if (redY <= 0) {
+                redY = 0
             }
 
-            if (redX + redWidth > canvas.width) {
-                redX = redX - moveSpeed
-            }
 
-            
+
 
 
 
@@ -91,6 +125,28 @@
             render()
 
         }// end of update
+        function rainbow() {
+            
+
+        }
+        function checkKey(e) {
+
+            e = e || window.event;
+
+            if (e.keyCode == '38') {
+                redY = redY - moveSpeed//down
+            }
+            else if (e.keyCode == '40') {
+                redY = redY + moveSpeed//up
+            }
+            else if (e.keyCode == '37') {
+                redX = redX - moveSpeed//left
+            }
+            else if (e.keyCode == '39') {
+                redX = redX + moveSpeed//right
+            }
+
+        }
 
 
         function render() {
@@ -112,7 +168,16 @@
             ctx.fillStyle = "red";
             ctx.fill();
 
+
+            //Draw Circle
+            ctx.beginPath();
+            ctx.arc(greenX, greenY, greenRadius, greenStartAngle, greenEndAngle * Math.PI); // parameters are x,y,radius,starting angle in radians, ending angle in radians, 
+            ctx.closePath();
+            ctx.fillStyle = "green"
+            ctx.fill();
+
         }// end of render
+
 
         function getPosition(event) {// start of getPosition
             /*
@@ -131,13 +196,13 @@
             // adjust for any scrolling
             clickX += window.pageXOffset
             clickY += window.pageYOffset;
-            // cyour code here
 
 
 
 
 
         }// end of GetPosition
+
 
 
         function followMouse(e) {
@@ -151,6 +216,7 @@
             mouseX -= canvas.offsetLeft;
             mouseY -= canvas.offsetTop;
         }
+
     </script>
 </head>
 
