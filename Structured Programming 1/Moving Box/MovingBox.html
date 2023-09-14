@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
 <style>
+    /*Adds a border around the canvas*/
     #myCanvas {
         border: 25px solid rgb(0, 0, 0);
     }
-
+    /*Centers the header and changes the color and font*/
     h1 {
         text-align: center;
         color: rgb(74, 10, 250);
         font-family: Comic Sans MS;
     }
-
+    /*Centers h4*/
     h4 {
         text-align: center;
     }
-
+    /*Changes the BG color*/
     body {
         background-color: aqua;
     }
 </style>
+<!--Main Header--> 
 <h1>
     Epic Shapes
 </h1>
+<!--Displays Instructions--> 
 <h4>
     ('<' Slower) ('>' Faster) <br>
     ('Left Click' Bigger) ('Right Click' Smaller) <br>
 
 </h4>
+
+
+<!--adds a table with variables and aligns it to the center--> 
 <div style="text-align: center; ">
     <table style="margin-left: auto; margin-right: auto;">
         <tr>
@@ -44,9 +50,6 @@
             </td>
         </tr>
     </table>
-
-
-
 </div>
 
 
@@ -56,7 +59,7 @@
     <script>
 
         // Global Variables
-        var moveSpeed = 1 //pixels per frame
+        var moveSpeed = 10 //pixels per frame
         var physicsFps = 120
         var clickCount = 0
         // Drawing
@@ -83,13 +86,10 @@
         //mouse
         var mouseX
         var mouseY
-        var pmouseX = 0
-        var pmouseY = 0
         //keybaord
         var keysDown = {};
 
         function loaded() {
-            //code goes here
             canvas = document.getElementById("myCanvas")
             ctx = canvas.getContext("2d")
 
@@ -112,27 +112,34 @@
                 this is where variables change
                 user triggered
             */
-           
+
+           //Adds varables to HTML
             document.getElementById('Clicks').innerHTML = clickCount;
             document.getElementById('Speed').innerHTML = moveSpeed;
             document.getElementById('Size').innerHTML = greenRadius;
             document.onkeydown = checkKey;
+
+            //On left click increment click count and the radius of the circle
             canvas.onclick = function (IncrementClickCount) {
                 clickCount = clickCount + 1
                 greenRadius = greenRadius + 1
             }
+
+            //On left click increment click count and decrement the radius of the circle
             canvas.oncontextmenu = function (IncrementRightClickCount) {
                 clickCount = clickCount + 1
                 greenRadius = greenRadius - 1
             }
             
-
+            //Sets the green circles position to be equal to the mouse pointer
             greenX = mouseX - 25
             greenY = mouseY - 25
+
+            //Moves the blue square based on it's current direction
             blueX = blueX - moveSpeed*blueXdir
             blueY = blueY - moveSpeed*blueYdir
 
-
+            //Checks if the blue square collides with the edge of the canvas
             if (blueY + blueHeight >= canvas.height) {
                 blueYdir = blueYdir*-1
             }
@@ -148,9 +155,7 @@
             }
 
 
-
-            
-
+            //Checks if the red square collides with the edge of the canvas
             if (redY + redHeight >= canvas.height) {
                 redY = canvas.height - redHeight
             }
@@ -164,17 +169,14 @@
                 redY = 0
             }
 
-
-
-
-
-
+            //Calls the render function
             render()
+            //Prevent context menu from appearing
             preventDefault()
 
-        }// end of update
+        }
 
-        function checkKey(e) {
+        function checkKey(e) { //checks for keybinds
 
             e = e || window.event;
 
@@ -199,34 +201,30 @@
 
         }
 
-
         function render() {
             //Draws to the screen
             //Called by the 'update' function
 
-            //draw the BG
-            
+            //draws the BG(clears the canvas)
             ctx.beginPath()
             ctx.rect(0, 0, canvas.width, canvas.height); // parameters are x,y,width,height
             ctx.closePath()
             ctx.fillStyle = "rgb(200,200,200)";
             ctx.fill();
             
-
-
-            // draw a red rectangle
+            // Draw a Red Rectangle
             ctx.beginPath()
             ctx.rect(redX, redY, redWidth, redHeight); // parameters are x,y,width,height
             ctx.closePath()
             ctx.fillStyle = "red";
             ctx.fill();
-            // draw a blue rectangle
+
+            // Draw a Blue Rectangle
             ctx.beginPath()
             ctx.rect(blueX, blueY, blueWidth, blueHeight); // parameters are x,y,width,height
             ctx.closePath()
             ctx.fillStyle = "blue";
             ctx.fill();
-
 
             //Draw Circle
             ctx.beginPath();
@@ -238,13 +236,10 @@
         }// end of render
 
         function followMouse(e) {
-            pmouseX = mouseX
-            pmouseY = mouseY
+            //Gets the current mouse position
             mouseX = event.x;
             mouseY = event.y;
-
-            //var canvas = document.getElementById("canvas");
-
+            //Offsets the varibles to line up with the mouse
             mouseX -= canvas.offsetLeft;
             mouseY -= canvas.offsetTop;
         }
