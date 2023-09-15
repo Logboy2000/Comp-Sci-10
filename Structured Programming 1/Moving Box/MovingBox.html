@@ -145,16 +145,20 @@
             //Checks if the blue square collides with the edge of the canvas
             if (blueY + blueHeight >= canvas.height) {
                 blueYdir = blueYdir * -1
+                blueY = canvas.height - blueHeight
             }
             if (blueX + blueWidth >= canvas.width) {
                 blueXdir = blueXdir * -1
+                blueX = canvas.width - blueWidth
             }
             if (blueY <= 0) {
                 blueYdir = blueYdir * -1
+                blueY = 0
 
             }
             if (blueX <= 0) {
                 blueXdir = blueXdir * -1
+                blueX = 0
             }
 
 
