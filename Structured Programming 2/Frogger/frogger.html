@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<style>
+	/*Adds a border around the canvas and centers it*/
+	#frogger {
+		border: 1px solid rgb(0, 0, 0);
+		padding: 0;
+		margin: auto;
+		display: block;
+	}
+
+	h1 {
+		text-align: center;
+	}
+</style>
+
+<head>
+	<meta charset="utf-8">
+	<title>Frogger</title>
+	<h1>FROGGER</h1>
+	<link rel="icon" href="images/favicon.png" type="image/png">
+	<script>
+
+		
+		var id
+		var canvas
+		var ctx
+		var fps = 30
+		var frogX = 0
+		var frogY = 375
+		var canvasWidth = 400;
+		var canvasHeight = 400;
+
+		// images
+		var topImg = new Image();
+		topImg.src = "images/top.png";
+		topImg.onload = loaded;
+
+		var frogUp1Img = new Image();
+		frogUp1Img.src = "images/frogUp1.png";
+
+		var frogUp2Img = new Image();
+		frogUp2Img.src = "images/frogUp2.png";
+
+
+
+
+		function loaded() {
+			canvas = document.getElementById("frogger")
+			canvas.width = canvasWidth;
+			canvas.height = canvasHeight;
+
+
+			ctx = canvas.getContext("2d")
+			id = setInterval(update, 1000 / fps)
+		}// end of loaded
+
+		function update() {
+			//draw everything
+			render()
+		}// end of update
+
+		function render() {
+			//draw top safety zone
+			ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+			ctx.drawImage(topImg, 0, 0);
+			
+			ctx.drawImage(frogUp1Img, frogX, frogY);
+			
+
+		}// end of render
+
+
+	</script>
+</head>
+
+<body>
+	<canvas id="frogger"></canvas>
+</body>
+
+</html>

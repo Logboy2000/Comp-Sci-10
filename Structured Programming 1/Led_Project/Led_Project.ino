@@ -8,21 +8,19 @@ void setup() {
   //set pin mode
   pinMode (ledRed, OUTPUT);
   pinMode (ledYellow, OUTPUT);
-  //set serial
+  //start serial communication
   Serial.begin(9600);
 }//end of setup
 
 void loop() {
-  //updates the variables
+  //updates the brightness
   analogWrite (ledRed, redBrightness);
   analogWrite (ledYellow, yellowBrightness);
 
-  //changes the brightness values
+  //changes the brightness variables
   redBrightness = redBrightness + 10;
   yellowBrightness = yellowBrightness - 10;
   
-
-
   //prints brightness values
   Serial.println(redBrightness);
   Serial.println("Red Brightness:");
