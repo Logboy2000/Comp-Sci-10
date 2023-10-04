@@ -46,13 +46,9 @@
 		var gameOver = false
 		var frogDir = "up"
 		var lifeCount = 5
-		var level = 1
-		var highScore = 0
 		var frogMoving = false
 		var newX = 200
 		var newY = 343
-		var frogVelocity = 0
-		var score = 0
 		var obstacleSpeed = 1
 		const SPEEDMODIFIER = 1.5
 		var gameWon = false
@@ -141,10 +137,10 @@
 		var smallLogImg = new Image();
 		smallLogImg.src = "images/smallLog.png";
 
-		var waterImg = new Image();
-		waterImg.src = "images/water.png";
+		var jumpscareImg = new Image();
+		jumpscareImg.src = "images/jumpscare.png";
 
-		waterImg.onload = loaded;
+		jumpscareImg.onload = loaded;
 
 
 
@@ -169,28 +165,45 @@
 			var medLogWidth = 118
 			var smolLogWidth = 84
 
-			//moves the frog with the log
-			if (frogY == log1Y || frogY == log3Y) {
-				onRightLog = true
+			//car collision
+			if (frogY==215 && (frogX > truckX && frogX < truckX+truckLeftImg.width || frogX+32 > truckX && frogX+32 < truckX+truckLeftImg.width))	{
+				loseGame()
 			}
-			else {
-				onRightLog = false
+			if (frogY==247 && (frogX > pinkX && frogX < pinkX+pinkCarLeftImg.width || frogX+32 > pinkX && frogX+32 < pinkX+pinkCarLeftImg.width))	{
+				loseGame()
 			}
-			if (frogY == log2Y || frogY == log4Y) {
-				onLeftLog = true
+			
+			if (frogY==279 && (frogX > greenX && frogX < greenX+raceCarRightImg.width || frogX+32 > greenX && frogX+32 < greenX+raceCarRightImg.width))	{
+				loseGame()
 			}
-			else {
-				onLeftLog = false
+			if (frogY==311 && (frogX > yellowX && frogX < yellowX+yellowCarLeftImg.width || frogX+32 > yellowX && frogX+32 < yellowX+yellowCarLeftImg.width))	{
+				loseGame()
 			}
+			
+		
+			
+			
 
-
-			if (onRightLog) {
+			//log collision
+			if (frogY==log1Y && (frogX > log1X && frogX < log1X+medLogWidth || frogX+32 > log1X && frogX+32 < log1X+medLogWidth))	{
 				frogX += 2 * obstacleSpeed
+				onlog = true
 			}
-			if (onLeftLog) {
+			else if (frogY==log2Y && (frogX > log2X && frogX < log2X+bigLogWidth || frogX+32 > log2X && frogX+32 < log2X+bigLogWidth))	{
 				frogX -= 1 * obstacleSpeed
 			}
+			else if (frogY==log3Y && (frogX > log3X && frogX < log3X+smolLogWidth || frogX+32 > log3X && frogX+32 < log3X+smolLogWidth))	{
+				frogX += 2 * obstacleSpeed
+			}
+			else if (frogY==log4Y && (frogX > log4X && frogX < log4X+medLogWidth || frogX+32 > log4X && frogX+32 < log4X+medLogWidth))	{
+				frogX -= 1 * obstacleSpeed
+			} else if (frogY<153&&frogY>53){
+				loseGame()
+			}
 
+
+			
+			//frogX -= 1 * obstacleSpeed
 
 			//logs
 			if (log1X > canvasWidth) {
@@ -248,7 +261,7 @@
 		function render() {
 			//clear screen
 			ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-			//ctx.drawImage(waterImg, 0, 55);
+			//ctx.drawImage(jumpscareImg, 0, 55);
 
 			//draw water
 			ctx.beginPath()
@@ -268,11 +281,7 @@
 			ctx.drawImage(topImg, 0, 0);
 			ctx.drawImage(middleImg, 0, 180);
 			ctx.drawImage(middleImg, 0, 343);
-			//draw cars
-			ctx.drawImage(truckLeftImg, truckX, 215);
-			ctx.drawImage(pinkCarLeftImg, pinkX, 247);
-			ctx.drawImage(raceCarRightImg, greenX, 279);
-			ctx.drawImage(yellowCarLeftImg, yellowX, 311);
+			
 			//draw logs
 			ctx.drawImage(mediumLogImg, log1X, log1Y);
 			ctx.drawImage(largeLogImg, log2X, log2Y);
@@ -293,6 +302,12 @@
 				ctx.drawImage(frogRight1Img, frogX, frogY);
 			}
 
+			//draw cars
+			ctx.drawImage(truckLeftImg, truckX, 215);
+			ctx.drawImage(pinkCarLeftImg, pinkX, 247);
+			ctx.drawImage(raceCarRightImg, greenX, 279);
+			ctx.drawImage(yellowCarLeftImg, yellowX, 311);
+
 			//draw UI
 			ctx.beginPath()
 			ctx.rect(0, 375, 399, 30); // parameters are x,y,width,height
@@ -305,9 +320,6 @@
 			ctx.font = "15px sprint_2regular";
 			ctx.fillStyle = "#FFFFFF"
 			ctx.fillText("x " + lifeCount, 32, 395);
-			ctx.font = "15px sprint_2regular";
-			ctx.fillStyle = "#FFFFFF"
-			ctx.fillText(level, 195, 395);
 
 			if (frog1) {
 				ctx.drawImage(safetyFrogImg, 11, 23, 32, 32);
@@ -329,10 +341,7 @@
 				ctx.drawImage(safetyFrogImg, 351, 23, 32, 32);
 
 			}
-
-			if (level > 100) {
-				gameEnd()
-			}
+			
 
 		} // end of render
 
@@ -432,10 +441,10 @@
 			if (frog1 && frog2 && frog3 && frog4 && frog5) {
 				setTimeout(function () {
 					gameEnd()
-				}, 1000)
+				}, 30)
 			}
 			frogY = 343
-			level += 1
+			
 
 
 		}
@@ -450,11 +459,15 @@
 			ctx.fillStyle = "black";
 			ctx.fill();
 
-
+			
 			ctx.font = "15px sprint_2regular";
 			ctx.fillStyle = "#C40008"
 			ctx.fillText("YOU WIN", 130, 195);
 			ctx.fillText("PRESS ENTER", 115, 215);
+			ctx.drawImage(jumpscareImg,0,399-canvasHeight/3, canvasWidth,canvasHeight/3)
+			ctx.drawImage(jumpscareImg,0,0,canvasWidth,canvasHeight/3)
+			
+			
 
 		}
 
@@ -464,13 +477,9 @@
 			gameOver = false
 			frogDir = "up"
 			lifeCount = 5
-			level = 1
 			obstacleSpeed = 1
 
 			frogMoving = false
-			newX = 200
-			newY = 343
-			frogVelocity = 0
 			gameWon = false
 
 			truckX = 350
