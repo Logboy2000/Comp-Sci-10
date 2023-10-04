@@ -36,7 +36,7 @@
 	<link rel="icon" href="images/favicon.png" type="image/png">
 	<script>
 
-
+		//declares and sets starting values of variables
 		var id
 		var canvas
 		var ctx
@@ -50,7 +50,7 @@
 		var newX = 200
 		var newY = 343
 		var obstacleSpeed = 1
-		const SPEEDMODIFIER = 1.5
+		const SPEEDMODIFIER = 1
 		var gameWon = false
 
 		var truckX = 350
@@ -166,44 +166,44 @@
 			var smolLogWidth = 84
 
 			//car collision
-			if (frogY==215 && (frogX > truckX && frogX < truckX+truckLeftImg.width || frogX+32 > truckX && frogX+32 < truckX+truckLeftImg.width))	{
+			if (frogY == 215 && (frogX > truckX && frogX < truckX + truckLeftImg.width || frogX + 32 > truckX && frogX + 32 < truckX + truckLeftImg.width)) {
 				loseGame()
 			}
-			if (frogY==247 && (frogX > pinkX && frogX < pinkX+pinkCarLeftImg.width || frogX+32 > pinkX && frogX+32 < pinkX+pinkCarLeftImg.width))	{
+			if (frogY == 247 && (frogX > pinkX && frogX < pinkX + pinkCarLeftImg.width || frogX + 32 > pinkX && frogX + 32 < pinkX + pinkCarLeftImg.width)) {
 				loseGame()
 			}
-			
-			if (frogY==279 && (frogX > greenX && frogX < greenX+raceCarRightImg.width || frogX+32 > greenX && frogX+32 < greenX+raceCarRightImg.width))	{
+
+			if (frogY == 279 && (frogX > greenX && frogX < greenX + raceCarRightImg.width || frogX + 32 > greenX && frogX + 32 < greenX + raceCarRightImg.width)) {
 				loseGame()
 			}
-			if (frogY==311 && (frogX > yellowX && frogX < yellowX+yellowCarLeftImg.width || frogX+32 > yellowX && frogX+32 < yellowX+yellowCarLeftImg.width))	{
+			if (frogY == 311 && (frogX > yellowX && frogX < yellowX + yellowCarLeftImg.width || frogX + 32 > yellowX && frogX + 32 < yellowX + yellowCarLeftImg.width)) {
 				loseGame()
 			}
-			
-		
-			
-			
+
+
+
+
 
 			//log collision
-			if (frogY==log1Y && (frogX > log1X && frogX < log1X+medLogWidth || frogX+32 > log1X && frogX+32 < log1X+medLogWidth))	{
+			if (frogY == log1Y && (frogX > log1X && frogX < log1X + medLogWidth || frogX + 32 > log1X && frogX + 32 < log1X + medLogWidth)) {
 				frogX += 2 * obstacleSpeed
 				onlog = true
 			}
-			else if (frogY==log2Y && (frogX > log2X && frogX < log2X+bigLogWidth || frogX+32 > log2X && frogX+32 < log2X+bigLogWidth))	{
+			else if (frogY == log2Y && (frogX > log2X && frogX < log2X + bigLogWidth || frogX + 32 > log2X && frogX + 32 < log2X + bigLogWidth)) {
 				frogX -= 1 * obstacleSpeed
 			}
-			else if (frogY==log3Y && (frogX > log3X && frogX < log3X+smolLogWidth || frogX+32 > log3X && frogX+32 < log3X+smolLogWidth))	{
+			else if (frogY == log3Y && (frogX > log3X && frogX < log3X + smolLogWidth || frogX + 32 > log3X && frogX + 32 < log3X + smolLogWidth)) {
 				frogX += 2 * obstacleSpeed
 			}
-			else if (frogY==log4Y && (frogX > log4X && frogX < log4X+medLogWidth || frogX+32 > log4X && frogX+32 < log4X+medLogWidth))	{
+			else if (frogY == log4Y && (frogX > log4X && frogX < log4X + medLogWidth || frogX + 32 > log4X && frogX + 32 < log4X + medLogWidth)) {
 				frogX -= 1 * obstacleSpeed
-			} else if (frogY<153&&frogY>53){
+			} else if (frogY < 153 && frogY > 53) {
 				loseGame()
 			}
 
 
-			
-			//frogX -= 1 * obstacleSpeed
+
+
 
 			//logs
 			if (log1X > canvasWidth) {
@@ -250,7 +250,7 @@
 			if (frogY < 50) {
 				winGame()
 			}
-			if (frogX < -20 || frogX > 391) {
+			if (frogX < -20 || frogX > 391 || frogY > 350) {
 				loseGame()
 			}
 			if (gameOver == false && gameWon == false) {
@@ -281,7 +281,7 @@
 			ctx.drawImage(topImg, 0, 0);
 			ctx.drawImage(middleImg, 0, 180);
 			ctx.drawImage(middleImg, 0, 343);
-			
+
 			//draw logs
 			ctx.drawImage(mediumLogImg, log1X, log1Y);
 			ctx.drawImage(largeLogImg, log2X, log2Y);
@@ -289,16 +289,16 @@
 			ctx.drawImage(mediumLogImg, log4X, log4Y);
 
 			// Draw the frog based on its direction
-			if (frogDir === "up") {
+			if (frogDir == "up") {
 				ctx.drawImage(frogUp1Img, frogX, frogY);
 			}
-			else if (frogDir === "down") {
+			else if (frogDir == "down") {
 				ctx.drawImage(frogDown1Img, frogX, frogY);
 			}
-			else if (frogDir === "left") {
+			else if (frogDir == "left") {
 				ctx.drawImage(frogLeft1Img, frogX, frogY);
 			}
-			else if (frogDir === "right") {
+			else if (frogDir == "right") {
 				ctx.drawImage(frogRight1Img, frogX, frogY);
 			}
 
@@ -320,40 +320,37 @@
 			ctx.font = "15px sprint_2regular";
 			ctx.fillStyle = "#FFFFFF"
 			ctx.fillText("x " + lifeCount, 32, 395);
+			ctx.fillText("lvl " + obstacleSpeed, 300, 395);
 
 			if (frog1) {
 				ctx.drawImage(safetyFrogImg, 11, 23, 32, 32);
-
 			}
 			if (frog2) {
 				ctx.drawImage(safetyFrogImg, 97, 23, 32, 32);
-
 			}
 			if (frog3) {
 				ctx.drawImage(safetyFrogImg, 182, 23, 32, 32);
-
 			}
 			if (frog4) {
 				ctx.drawImage(safetyFrogImg, 264, 23, 32, 32);
-
 			}
 			if (frog5) {
 				ctx.drawImage(safetyFrogImg, 351, 23, 32, 32);
-
 			}
-			
+
 
 		} // end of render
 
 		document.onkeydown = checkKey;
 
-		function checkKey(e) {
+		function checkKey(e) {//calls the corresponding function when a key is pressed
 
 			e = e || window.event;
 
 			if (e.keyCode == '38') {
 				// up arrow
 				moveup()
+
 			}
 			else if (e.keyCode == '40') {
 				// down arrow
@@ -374,6 +371,19 @@
 			else if (e.keyCode == '13') {
 				// Enter
 				newGame()
+			} else if (e.keyCode == '61') {
+				// +
+
+				obstacleSpeed += 1
+			} else if (e.keyCode == '173') {
+				// -
+				if (obstacleSpeed < 2) {
+					obstacleSpeed = 2
+				}
+				obstacleSpeed -= 1
+			}else if (e.keyCode == '87') {
+				// w
+				gameEnd()
 			}
 		}
 
@@ -424,18 +434,23 @@
 			//does stuff when the game is won
 			if (frogX > 0 && frogX < 80) {
 				frog1 = true
+				lifeCount += 1
 			}
 			if (frogX > 80 && frogX < 160) {
 				frog2 = true
+				lifeCount += 1
 			}
 			if (frogX > 160 && frogX < 240) {
 				frog3 = true
+				lifeCount += 1
 			}
 			if (frogX > 240 && frogX < 320) {
 				frog4 = true
+				lifeCount += 1
 			}
 			if (frogX > 320 && frogX < 399) {
 				frog5 = true
+				lifeCount += 1
 			}
 
 			if (frog1 && frog2 && frog3 && frog4 && frog5) {
@@ -444,30 +459,32 @@
 				}, 30)
 			}
 			frogY = 343
-			
-
-
 		}
 
 		function gameEnd() {
 			gameWon = true
 
-			setTimeout
+
 			ctx.beginPath()
 			ctx.rect(0, 0, canvasWidth, canvasHeight); // parameters are x,y,width,height
 			ctx.closePath()
 			ctx.fillStyle = "black";
 			ctx.fill();
 
-			
+
 			ctx.font = "15px sprint_2regular";
 			ctx.fillStyle = "#C40008"
-			ctx.fillText("YOU WIN", 130, 195);
-			ctx.fillText("PRESS ENTER", 115, 215);
-			ctx.drawImage(jumpscareImg,0,399-canvasHeight/3, canvasWidth,canvasHeight/3)
-			ctx.drawImage(jumpscareImg,0,0,canvasWidth,canvasHeight/3)
-			
-			
+			ctx.fillText("YOU WIN", 150, 155);
+			ctx.fillText("PRESS ENTER", 120, 175);
+			ctx.fillText("LEVEL " + obstacleSpeed, 123, 215);
+			ctx.fillText("LIVES " + lifeCount, 122, 230);
+			if (lifeCount > 10 || lifeCount == 10) {
+				ctx.fillText("PERFECT RUN GG", 95, 255);
+				ctx.drawImage(jumpscareImg, 0, 399 - canvasHeight / 3, canvasWidth, canvasHeight / 3)
+				ctx.drawImage(jumpscareImg, 0, 0, canvasWidth, canvasHeight / 3)
+			}
+
+
 
 		}
 
@@ -503,7 +520,9 @@
 
 	</script>
 </head>
+
 <body>
 	<canvas id="frogger"></canvas>
 </body>
+
 </html>
