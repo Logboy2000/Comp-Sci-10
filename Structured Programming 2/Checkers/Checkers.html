@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Checker Board</title>
+
+    <script>
+
+        function go() {
+            //variables
+            var x
+            var y
+            //var ctx1 = document.getElementById("checkerboard1").getContext("2d")
+            //no loops (34 lines of code)
+            //fills canvas with red
+            document.getElementById("checkerboard1").getContext("2d").fillStyle = "red"
+            document.getElementById("checkerboard1").getContext("2d").fillRect(0, 0, 400, 400)
+            //fills every individual black square
+            document.getElementById("checkerboard1").getContext("2d").fillStyle = "black"
+            document.getElementById("checkerboard1").getContext("2d").fillRect(0, 0, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(100, 0, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(200, 0, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(300, 0, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(50, 50, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(150, 50, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(250, 50, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(350, 50, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(0, 100, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(100, 100, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(200, 100, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(300, 100, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(50, 150, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(150, 150, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(250, 150, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(350, 150, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(0, 200, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(100, 200, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(200, 200, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(300, 200, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(50, 250, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(150, 250, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(250, 250, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(350, 250, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(0, 300, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(100, 300, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(200, 300, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(300, 300, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(50, 350, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(150, 350, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(250, 350, 50, 50)
+            document.getElementById("checkerboard1").getContext("2d").fillRect(350, 350, 50, 50)
+
+            //1 loop per row (26 lines of code)
+            x = 0
+            document.getElementById("checkerboard2").getContext("2d").fillStyle = "red"
+            document.getElementById("checkerboard2").getContext("2d").fillRect(0, 0, 400, 400)
+            document.getElementById("checkerboard2").getContext("2d").fillStyle = "black"
+            for (x = 0; x < 400; x += 100) {
+                document.getElementById("checkerboard2").getContext("2d").fillRect(x, 0, 50, 50)
+            }
+            for (x = 50; x < 400; x += 100) {
+                document.getElementById("checkerboard2").getContext("2d").fillRect(x, 50, 50, 50)
+            }
+            for (x = 0; x < 400; x += 100) {
+                document.getElementById("checkerboard2").getContext("2d").fillRect(x, 100, 50, 50)
+            }
+            for (x = 50; x < 400; x += 100) {
+                document.getElementById("checkerboard2").getContext("2d").fillRect(x, 150, 50, 50)
+            }
+            for (x = 0; x < 400; x += 100) {
+                document.getElementById("checkerboard2").getContext("2d").fillRect(x, 200, 50, 50)
+            }
+            for (x = 50; x < 400; x += 100) {
+                document.getElementById("checkerboard2").getContext("2d").fillRect(x, 250, 50, 50)
+            }
+            for (x = 0; x < 400; x += 100) {
+                document.getElementById("checkerboard2").getContext("2d").fillRect(x, 300, 50, 50)
+            }
+            for (x = 50; x < 400; x += 100) {
+                document.getElementById("checkerboard2").getContext("2d").fillRect(x, 350, 50, 50)
+            }
+
+            //Nested loops (15 lines of code)
+            var offset = false
+            x = 0
+            y = 0
+            //fill canvas with red
+            document.getElementById("checkerboard3").getContext("2d").fillStyle = "red"
+            document.getElementById("checkerboard3").getContext("2d").fillRect(0, 0, 400, 400)
+            while (y < 400) {
+                while (x < 400) {
+                    document.getElementById("checkerboard3").getContext("2d").fillStyle = "black"
+                    document.getElementById("checkerboard3").getContext("2d").fillRect(x, y, 50, 50)
+                    document.getElementById("checkerboard3").getContext("2d").fillRect(x+50, y+50, 50, 50)
+                    x += 100
+                }
+                x = 0
+                y += 100
+            }
+
+        }
+
+
+    </script>
+</head>
+
+<body onLoad="go()">
+    no loops (34 lines of code)
+    <br>
+    <canvas id="checkerboard1" width="400" height="400">
+    </canvas>
+    <br>
+    1 loop per row (26 lines of code)
+    <br>
+    <canvas id="checkerboard2" width="400" height="400">
+    </canvas>
+    <br>
+    Nested loops (15 lines of code)
+    <br>
+    <canvas id="checkerboard3" width="400" height="400">
+    </canvas>
+</body>
+
+</html>

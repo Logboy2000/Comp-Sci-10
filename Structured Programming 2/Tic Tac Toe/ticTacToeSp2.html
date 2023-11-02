@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tic Tac Toe</title><br>
+<script>
+// global variables (s1 ... s9 and, playerTurn , boardSize (600)
+	
+	function loaded(){ // start of loaded
+		/*
+			this is the main function to control the game that runs when the page loads.
+			it needs to:
+				1) set up the board
+				2) reset the global variables
+				3) display a message on the board so we know who's turn it is
+				4) create an event listener for when the board is clicked
+		*/
+		
+		
+		
+		
+		// end of loaded responsibility
+		c=document.getElementById("ticTacToe")
+		c.addEventListener('click', function(event) { // start of click event listener
+			/*
+				this function checks what square was clicked on and calls makeMove passing
+				the appropriate parameter for the square
+				INPUTS - 
+					event - the click event object
+				OUTPUTS - 
+					none
+				
+			*/
+    		var x = event.pageX - c.offsetLeft
+       		var y = event.pageY - c.offsetTop;
+
+    	// what square was clicked
+    	
+   			if(x<=200&&y<200){ // first x
+				
+			}
+			
+			if(x>200&&x<400&&y<200){ // second x
+				
+			}
+			
+			if(x>400&&y<200){ // third x
+				
+			}
+			
+			if(x<=200&&y>200&&y<400){ // fourth x
+				
+			}
+			
+			if(x>200&&x<400&&y>200&&y<400){ // fifth x
+				
+			}
+			
+			if(x>400&&y>200&&y<400){ // sixth x
+				
+			}
+			
+			if(x<200&&y>400){ // seventh x
+				
+			}
+			
+			if(x>200&&x<400&&y>400){ // eighth x
+				
+			}
+			
+			if(x>400&&y>400){ // ninth x
+				
+			}
+	}, false); // end of eventListener	
+	}// end of loaded
+	
+	
+</script>
+
+</head>
+
+<body onLoad="loaded()">
+<canvas id="ticTacToe" width="600"  height="650" ></canvas>
+</body>
+</html>
