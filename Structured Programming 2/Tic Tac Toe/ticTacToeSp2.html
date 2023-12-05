@@ -3,11 +3,21 @@
 <style>
 	#canvas {
 		border: 3px solid white;
+		padding:  0;
+		margin: auto;
+		display: block;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
 	}
-	#variableText{
+
+	#variableText {
 		color: white;
 	}
+
 	body {
+		text-align: center;
 		background-color: black;
 	}
 </style>
@@ -29,15 +39,19 @@
 		var winImg = new Image();
 		winImg.src = "TicTacWin.png";
 
+		var tieImg = new Image();
+		tieImg.src = "TicTacTie.png";
+
 		oImg.onload = loaded;
 		//array to keep track of the game board
 		var gameBoard = [
-			[null, null, null],
-			[null, null, null],
-			[null, null, null]
+			["", "", ""],
+			["", "", ""],
+			["", "", ""]
 		]
+		 
 
-		
+
 
 		function loaded() { // start of loaded
 			canvas = document.getElementById("canvas")
@@ -50,10 +64,8 @@
 			// end of loaded responsibility
 
 			canvas.addEventListener('click', function (event) { // start of click event listener
-				/*
-					this function checks what square was clicked on and calls makeMove passing
-					the appropriate parameter for the square
-				*/
+				
+				//this function checks what square was clicked on and calls makeMove
 				var clickX = event.pageX - canvas.offsetLeft
 				var clickY = event.pageY - canvas.offsetTop;
 				const row = Math.floor(clickY / 200);  // Calculate the row based on the Y coordinate.
@@ -65,10 +77,13 @@
 
 
 
-				// Check if the square is empty (null) before making a move
-				if (gameBoard[row][col] === null) {
+				// Check if the square is empty ("") before making a move
+				if (gameBoard[row][col] === "") {
 					// Update the game board with 'x' or 'o' based on the currentTurn variable
-					gameBoard[row][col] = currentTurn == 'x' ? 'x' : 'o';
+					if(currentTurn == 'x' || currentTurn == 'o'){
+						gameBoard[row][col] = currentTurn
+					}
+					
 
 					// Call a function to make the move appear on the canvas
 					makeMove(row, col);
@@ -96,19 +111,21 @@
 
 			if (
 				//check rows
-				(gameBoard[0][0] === gameBoard[1][0] && gameBoard[1][0] === gameBoard[2][0] && gameBoard[0][0] !== null) ||
-				(gameBoard[0][1] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][1] && gameBoard[0][1] !== null) ||
-				(gameBoard[0][2] === gameBoard[1][2] && gameBoard[1][2] === gameBoard[2][2] && gameBoard[0][2] !== null) ||
+				(gameBoard[0][0] === gameBoard[1][0] && gameBoard[1][0] === gameBoard[2][0] && gameBoard[0][0] !== "") ||
+				(gameBoard[0][1] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][1] && gameBoard[0][1] !== "") ||
+				(gameBoard[0][2] === gameBoard[1][2] && gameBoard[1][2] === gameBoard[2][2] && gameBoard[0][2] !== "") ||
 				//check columns
-				(gameBoard[0][0] === gameBoard[0][1] && gameBoard[0][1] === gameBoard[0][2] && gameBoard[0][0] !== null) ||
-				(gameBoard[1][0] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[1][2] && gameBoard[1][0] !== null) ||
-				(gameBoard[2][0] === gameBoard[2][1] && gameBoard[2][1] === gameBoard[2][2] && gameBoard[2][0] !== null) ||
+				(gameBoard[0][0] === gameBoard[0][1] && gameBoard[0][1] === gameBoard[0][2] && gameBoard[0][0] !== "") ||
+				(gameBoard[1][0] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[1][2] && gameBoard[1][0] !== "") ||
+				(gameBoard[2][0] === gameBoard[2][1] && gameBoard[2][1] === gameBoard[2][2] && gameBoard[2][0] !== "") ||
 				//check diagonals
-				(gameBoard[0][0] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][2] && gameBoard[0][0] !== null) ||
-				(gameBoard[0][2] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][0] && gameBoard[0][2] !== null)
+				(gameBoard[0][0] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][2] && gameBoard[0][0] !== "") ||
+				(gameBoard[0][2] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][0] && gameBoard[0][2] !== "")
 
 			) {
 				gameEnd()
+			} else if (gameBoard == [[!null, !null, !null],[!null, !null, !null],[!null, !null, !null]]){
+				
 			}
 		}
 		function gameEnd() {
@@ -123,9 +140,9 @@
 		function reset() {
 			//emptys the gameBoard array
 			gameBoard = [
-				[null, null, null],
-				[null, null, null],
-				[null, null, null]
+				["", "", ""],
+				["", "", ""],
+				["", "", ""]
 			]
 			drawGrid()
 		}
@@ -175,7 +192,7 @@
 		<p id="clickPosHtml"></p>
 		<p id="currentTurnHtml"></p>
 	</div>
-	
+
 	<button onclick="reset()">Reset</button>
 </body>
 

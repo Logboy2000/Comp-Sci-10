@@ -156,6 +156,7 @@
 
 
 			ctx = canvas.getContext("2d")
+			ctx.imageSmoothingEnabled = false;
 			id = setInterval(update, 1000 / fps)
 			
 		} // end of loaded
