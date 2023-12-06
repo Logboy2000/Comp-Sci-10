@@ -114,22 +114,19 @@
     <instance objName="objWall" x="0" y="320" name="inst_B7A5F016" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWall" x="0" y="352" name="inst_CB26CC52" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWall" x="0" y="384" name="inst_597DBFFF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBall" x="32" y="192" name="inst_CFC7E128" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPaddle" x="288" y="192" name="inst_71C7F958" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWall" x="0" y="448" name="inst_D217FADB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWall" x="32" y="448" name="inst_D1BF3211" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objGameStart" x="160" y="288" name="inst_B792F68A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objRoomStart" x="0" y="480" name="inst_8A668B5A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objLife" x="416" y="192" name="inst_A699802F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objLife" x="288" y="96" name="inst_C381BA22" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objLife" x="288" y="320" name="inst_D3022B41" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objLife" x="160" y="192" name="inst_FF9F9512" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSpikeWallRight" x="512" y="192" name="inst_1DE0F549" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPaddle" x="480" y="192" name="inst_3375800F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPaddle" x="480" y="352" name="inst_55AABB8B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPaddle" x="288" y="352" name="inst_75AE30F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPaddle" x="160" y="352" name="inst_10217CBC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPaddle" x="160" y="96" name="inst_0B27903E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaddle" x="160" y="160" name="inst_34DE0C88" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaddle" x="448" y="160" name="inst_D853FE68" locked="0" code="sprite_index=sprPaddleRight" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaddle" x="160" y="288" name="inst_8DA6928F" locked="0" code="sprite_index=sprPaddleRight" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaddle" x="448" y="288" name="inst_E65509EB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBall" x="288" y="288" name="inst_C16BFD75" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaddle" x="480" y="160" name="inst_BC3192AB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaddle" x="480" y="128" name="inst_5676DA97" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaddle" x="512" y="128" name="inst_C54D8D33" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaddle" x="512" y="96" name="inst_D17DED8F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaddle" x="544" y="96" name="inst_7A1F340E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaddle" x="544" y="64" name="inst_7B345789" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
