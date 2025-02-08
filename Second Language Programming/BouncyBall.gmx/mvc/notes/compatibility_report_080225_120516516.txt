@@ -1,0 +1,23 @@
+Missing audiogroup for sound: 'sndClick' - setting to default audio group
+Missing audiogroup for sound: 'sndBounce' - setting to default audio group
+Missing audiogroup for sound: 'sndExit' - setting to default audio group
+Game speed set to 30
+Added compatibility script 'action/action_next_room.gml'
+Added compatibility script 'action/action_draw_life_images.gml'
+Added compatibility script 'action/action_if.gml'
+Added compatibility script 'action/action_reverse_ydir.gml'
+Added compatibility script 'action/action_draw_text.gml'
+Added compatibility script 'action/action_message.gml'
+Added compatibility script 'action/action_set_relative.gml'
+Added compatibility script 'action/action_draw_score.gml'
+Added compatibility script 'action/action_move.gml'
+Added compatibility script 'action/action_current_room.gml'
+Added compatibility script 'action/action_if_next_room.gml'
+Added compatibility script 'action/action_sound.gml'
+Added compatibility script 'action/action_restart_game.gml'
+Added compatibility script 'action/action_reverse_xdir.gml'
+Added compatibility script 'action/action_set_life.gml'
+Added compatibility script 'action/action_kill_object.gml'
+Added compatibility script 'action/action_snap.gml'
+Added compatibility script 'action/__init_action.gml'
+Added compatibility script '__init_global.gml'
