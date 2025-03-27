@@ -3,10 +3,21 @@ Contains my Computer Science 10 project source code
 
 ## HTML Projects List
 ### Structured Programming 1
-- [Iterative Algorithms Module File](https://logboy2000.github.io/Comp-Sci-30/Iterative%20Algorithms%201/index.html)
+- [Change Calculator](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%201/Calculator)
+- [Shape Drawer](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%201/ShapeDrawer/)
+- [Moving Box](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%201/MovingBox/)
 
 ### Structured Programming 2
-- [Maze Generator](https://logboy2000.github.io/Comp-Sci-30/Recursive%20Algorithms%201/Maze%20Generator/)
+#### Projects
+- [Frogger](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%202/Frogger/)
+- [Tic-Tac-Toe](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%202/TicTacToe/)
+#### Learning
+- [Checkerboard Drawer](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%202/Checkers/)
+- [Box Collisions](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%202/Learning/boxCollisions.html)
+- [If Statement Challenges](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%202/Learning/ifPPC.html)
+- [Learning Loops](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%202/Learning/learningLoops.html)
+- [Learning Switch Statements](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%202/Learning/switchStatements.html)
+- [Loop Challenges](https://logboy2000.github.io/Comp-Sci-10/Structured%20Programming%202/Learning/loopChallenges.html)
 
 ### Second Language  (GameMaker v1.2)
- - [Final Project](https://logboy2000.github.io/Comp-Sci-30/Object%20Oriented%20Programming/Elevens)
+ - [Final Project (The Legend of Charlie)](https://github.com/Logboy2000/Comp-Sci-10/raw/refs/heads/main/Second%20Language%20Programming/FinalProject.gmx/The-Legend-Of-Charlie-1.1.1.exe)
